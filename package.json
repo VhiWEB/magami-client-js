@@ -1,0 +1,42 @@
+{
+  "name": "magami",
+  "private": true,
+  "version": "0.0.0",
+  "exports": {
+    ".": {
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.js"
+    }
+  },
+  "contributors": [
+    {
+      "name": "Syaiful Fahmi",
+      "email": "s.fahmii29@gmail.com",
+      "url": "https://github.com/sfhmi"
+    }
+  ],
+  "main": "./dist/main.js",
+  "module": "./dist/main.mjs",
+  "typings": "./dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "build:watch": "tsc && vite build --watch",
+    "dev": "vite",
+    "test:coverage": "vitest run --coverage",
+    "test:run": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/node": "^18.11.18",
+    "prettier": "^2.8.3",
+    "rollup-plugin-typescript-paths": "^1.4.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.0.0",
+    "vitest": "^0.28.3"
+  }
+}
