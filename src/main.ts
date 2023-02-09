@@ -1,45 +1,28 @@
-import { api } from "./helpers/api";
-import { hello } from "./utils/hello";
+import { coreApi } from "./helpers/api";
+import { } from "./utils/storage";
 
-export { hello }
-
-// interface Coupon {
-//     data?: any,
-// }
-
-interface UserData {
-    name?: string,
-    id?: number,
-    phone?: number,
-    address?: string,
-    email?: string,
+interface Init {
+    appId?: string | undefined | any
+    userName?: string | undefined | any
+    uniqueKey?: string | undefined | any
 }
 
 export default class Magami {
-    // private static _instance = Magami;
 
-    async claimCupoun(couponCode: string | number) {
-        try {
-            const response = api('POST', `${couponCode}`)
-            if (response) {
-                return (await response).json()
-            }
-        } catch (error) {
-            throw new Error;
-        }
+    init({ appId, userName, uniqueKey }: Init): void {
+        localStorage.setItem('appId', appId)
+        localStorage.setItem('userName', userName)
+        localStorage.setItem('uniqueKey', uniqueKey)
     }
 
-    async play(payload: UserData) {
+    async claim(couponCode: string) {
         try {
-            const response = api('POST', `/`, {
-                payload,
-            })
+            const response = await coreApi('GET', `/${couponCode}`)
             if (response) {
-                return (await response).json()
+                return await response.json()
             }
         } catch (error) {
-            throw new Error;
+            throw new Error()
         }
     }
-
 }
