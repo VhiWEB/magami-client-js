@@ -23,7 +23,19 @@ const magami = new Magami();
 ```
 magami.init({
     AppId: 'example',
-    userName: 'example',
     uniqueKey: 'example'
 });
 ```
+## claiming coupon
+```
+example
+const request = async(coupon_code: string) => {
+    try {
+        const response = await magami.claim(coupon_code)
+        if (response) {
+            return response
+        }
+    } catch (error) {
+        return error
+    }
+}
