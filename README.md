@@ -22,8 +22,8 @@ const magami = new Magami();
 
 ```
 magami.init({
-    AppId: 'example',
-    uniqueKey: 'example'
+    apiKey: 'example',
+    campaignSlug: 'example'
 });
 ```
 ## claiming coupon

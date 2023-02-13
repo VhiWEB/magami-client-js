@@ -1,3 +1,4 @@
+import { UserData } from "./model"
 
 
 export const storeDataManagement = () => {
@@ -16,9 +17,15 @@ export const storeDataManagement = () => {
     }
 
     return ({
-        getAppId: Getter<string>('appId'),
-        setAppId: Setter<string>('appId'),
-        getUniqueKey: Getter<string>('uniqueKey'),
-        setUniqueKey: Setter<string>('uniqueKey'),
+        // initialinze
+        getApiKey: Getter<string>('appId'),
+        setApiKey: Setter<string>('appId'),
+        getCampaignSlug: Getter<string>('uniqueKey'),
+        setCampaignSlug: Setter<string>('uniqueKey'),
+
+        // user information
+        setUserData: Setter<UserData>('userData'),
+        getUserData: Getter<UserData>('userData')
+
     })
 }
