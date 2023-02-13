@@ -71,6 +71,3 @@ export default class Magami {
         }
     }
 }
-
-
-// module.exports = {Roulette}
