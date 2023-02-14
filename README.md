@@ -1,6 +1,6 @@
-# Qiscus Web SDK Core
+# Magami client js 
 
-This library contains core functionalities needed to create a chat application using qiscus. 
+This library contains core functionalities needed to create a mini game campaign. 
 
 ## Installing
 
