@@ -4,8 +4,10 @@ export interface Init {
 }
 
 export interface UserData {
-    name: string,
-    phone: number,
-    email: string,
-    address: string,
+    coupon_code: string | any
+    name: string
+    phone: string | number
+    province_id: string | number
+    city_id: string | number
+    district_id: string | number | any
 }

@@ -1,4 +1,4 @@
-import { UserData } from "./model"
+import type { UserData } from "./model"
 
 
 export const storeDataManagement = () => {
@@ -25,7 +25,11 @@ export const storeDataManagement = () => {
 
         // user information
         setUserData: Setter<UserData>('userData'),
-        getUserData: Getter<UserData>('userData')
+        getUserData: Getter<UserData>('userData'),
+
+        //set coupon code
+        setCouponCode: Setter<string>('couponCode'),
+        getCouponCode: Getter<string>('couponCode')
 
     })
 }

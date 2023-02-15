@@ -19,13 +19,8 @@ export default class Magami {
         this.storage.setCampaignSlug(campaignSlug)
     }
 
-    setUserData({ name, phone, email, address }: UserData): void {
-        const userData = { name, phone, email, address }
-        this.storage.setUserData(userData)
-    }
-
+    // setup authorization for headers
     private async apiCall(method: string, resource: string, body?: Record<string, unknown>) {
-        // setup authorization for headers
         const auth = `${this.apiKey}`;
         const slug = this.campaignSlug;
 
@@ -45,6 +40,7 @@ export default class Magami {
         try {
             const response = await this.apiCall('GET', `claim/${couponCode}`);
             if (response) {
+                this.storage.setCouponCode(couponCode)
                 return response;
             } else {
                 throw new Error;
@@ -54,18 +50,67 @@ export default class Magami {
         }
     }
 
-    async userForm({ name, phone, email, address }: UserData): Promise<UserData | any> {
-        const payload = { name, phone, email, address }
+    async welcomeForm({
+        name,
+        phone,
+        province_id,
+        city_id,
+        district_id }: UserData): Promise<UserData | any> {
+        const payload = {
+            coupon_code: this.storage.getCouponCode(),
+            name,
+            phone,
+            province_id,
+            city_id,
+            district_id
+        }
         try {
-            const response = await this.apiCall('GET', ``, {
-                payload
+            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/welcome/submit`, {
+                ...payload
             })
+
             if (response) {
-                this.setUserData({ ...payload })
+                this.storage.setUserData(payload)
+
                 return response
             } else {
                 throw new Error
             }
+        } catch (error) {
+            return error
+        }
+    }
+
+    async redeem(redemptionId: string) {
+        try {
+            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/redeem/${redemptionId}`, {
+                campaignSlug: this.campaignSlug,
+                redemptionId: redemptionId
+            })
+
+            if (response) {
+                return response
+            } else {
+                throw new Error;
+
+            }
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    async ValidateWinner(couponCode: string, phone: number | string) {
+        try {
+            const response = await this.apiCall('GET', `/campaigns/${this.campaignSlug}/winner/validate`, {
+                couponCode,
+                phone,
+            })
+
+            if (response) {
+                return response
+            }
+
         } catch (error) {
             return error
         }
