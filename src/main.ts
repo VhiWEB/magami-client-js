@@ -1,6 +1,6 @@
 import { coreApi } from "./helpers/api"
 import { storeDataManagement } from "./utils/storage"
-import type { Init, UserData } from "./utils/model"
+import type { Init, UserData, Winner } from "./utils/model"
 
 export default class Magami {
 
@@ -21,7 +21,7 @@ export default class Magami {
 
     // setup authorization for headers
     private async apiCall(method: string, resource: string, body?: Record<string, unknown>) {
-        const auth = `${this.apiKey}`;
+        const auth = this.apiKey;
         const slug = this.campaignSlug;
 
         try {
@@ -51,13 +51,14 @@ export default class Magami {
     }
 
     async welcomeForm({
+        coupon_code,
         name,
         phone,
         province_id,
         city_id,
         district_id }: UserData): Promise<UserData | any> {
         const payload = {
-            coupon_code: this.storage.getCouponCode(),
+            coupon_code,
             name,
             phone,
             province_id,
@@ -65,7 +66,7 @@ export default class Magami {
             district_id
         }
         try {
-            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/welcome/submit`, {
+            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/welcome/submit`, {
                 ...payload
             })
 
@@ -83,10 +84,8 @@ export default class Magami {
 
     async redeem(redemptionId: string) {
         try {
-            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/redeem/${redemptionId}`, {
-                campaignSlug: this.campaignSlug,
-                redemptionId: redemptionId
-            })
+
+            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/redeem/${redemptionId}`)
 
             if (response) {
                 return response
@@ -100,12 +99,61 @@ export default class Magami {
         }
     }
 
-    async ValidateWinner(couponCode: string, phone: number | string) {
+    async validateWinner({ coupon_code, phone }: UserData) {
         try {
-            const response = await this.apiCall('GET', `/campaigns/${this.campaignSlug}/winner/validate`, {
-                couponCode,
+            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/validate`, {
+                coupon_code,
                 phone,
             })
+
+            if (response) {
+                return response
+            }
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    async winnerForm({ redemption_id, email, id_number, address }: Winner) {
+        try {
+            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/submit`, {
+                redemption_id,
+                email,
+                id_number,
+                address
+            })
+
+            if (response) {
+                return response
+            }
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    async getWinner() {
+        try {
+
+            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/winner/list`,)
+
+            if (response) {
+                return response
+            }
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    async faq(searchKey?: string | number | any) {
+        try {
+            const reqUrl = `campaigns/${this.campaignSlug}/faq`
+
+            searchKey && reqUrl.concat(`?search=${searchKey}`)
+
+            const response = await this.apiCall('POST', `${reqUrl}`)
 
             if (response) {
                 return response

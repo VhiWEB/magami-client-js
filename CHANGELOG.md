@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4] - 2023-02-20
+## Added
+- Add few methods welcomeForm, redeem, validateWinner, winnerForm, getWinner, and faq
+## Update
+- README.md
+- model.ts
+_ apiCore function
 ## [0.0.3] - 2023-02-13
 
 ### Added
