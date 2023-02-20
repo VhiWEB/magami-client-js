@@ -71,8 +71,6 @@ export default class Magami {
             })
 
             if (response) {
-                this.storage.setUserData(payload)
-
                 return response
             } else {
                 throw new Error
