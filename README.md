@@ -28,12 +28,10 @@ magami.init({
 ```
 ## claiming coupon
 ```
-example
 magami.claim(coupon_code)
 ```
 ## welcome form
 ```
-example
 magami.welcomeForm({
     coupon_code: 'example'
     name: 'example',
@@ -45,13 +43,11 @@ magami.welcomeForm({
 
 ## Redeem
 ```
-example
 magami.welcomeForm(redemption_id)
 ```
 
 ## validate winner
 ```
-example
 magami.validateWinner({
     coupon_code: 'example'
     phone: 082...
@@ -60,7 +56,6 @@ magami.validateWinner({
 
 ## winnerForm
 ```
-example
 magami.winnerForm({
     redemption_id: 'example',
     email:'email@example.com',
@@ -76,13 +71,13 @@ magami.getWinner()
 ```
 ## faq
 ```
-example
+
 magami.faq()
 
 options
+
 you can search FAQ by passing string to FAQ method
 
-example
 magami.faq('your search')
 ```
 
