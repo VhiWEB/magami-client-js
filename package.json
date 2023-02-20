@@ -19,9 +19,6 @@
       "url": "https://github.com/sfhmi"
     }
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
   "typings": "./dist/main.d.ts",
