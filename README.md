@@ -66,7 +66,6 @@ magami.winnerForm({
 
 ## getWinner
 ```
-example
 magami.getWinner()
 ```
 ## faq
