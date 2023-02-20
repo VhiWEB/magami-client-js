@@ -1,7 +1,11 @@
 {
   "name": "magami",
-  "private": true,
+  "private": false,
   "version": "0.0.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VhiWEB/magami-client-js.git"
+  },
   "exports": {
     ".": {
       "import": "./dist/main.mjs",
