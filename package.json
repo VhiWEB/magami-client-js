@@ -12,6 +12,9 @@
       "require": "./dist/main.js"
     }
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "contributors": [
     {
       "name": "Syaiful Fahmi",
