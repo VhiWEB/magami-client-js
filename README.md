@@ -1,37 +1,44 @@
-# Magami client js 
+<div align="center">
+  <h1>Magami Client JS</h1>
+</div>
+
+> :warning: **Note: Magami Client JS is still under development, and some function might be change.**
 
 This library contains core functionalities needed to create a mini game campaign. 
 
 ## Installing
+```bash
+npm i magami-client-js
 
-```
-$ npm i magami-client-js
-// or if you're using yarn
-$ yarn add magami-client-js
-```
+or if you are using yarn
 
-then you need to import this library into your application.
-
+yarn add magami-client-js
 ```
+Then you need to import this library into your application.
+
+```ts
 import Magami from 'magami-client-js';
-
 const magami = new Magami();
 ```
 
 ## Init using AppId 
+To initialize the app use `magami.init()` all your `apiKey` and    `campaignSlug` would be found on our magami website or please contact us.
 
-```
+```ts
 magami.init({
     apiKey: 'example',
     campaignSlug: 'example'
 });
+
 ```
-## claiming coupon
-```
+## Claiming Coupon
+To claim coupon from a campaign use `claim()` function.
+```ts
 magami.claim(coupon_code)
 ```
-## welcome form
-```
+
+## Welcome Form
+```ts
 magami.welcomeForm({
     coupon_code: 'example'
     name: 'example',
@@ -42,12 +49,12 @@ magami.welcomeForm({
 ```
 
 ## Redeem
-```
+```ts
 magami.welcomeForm(redemption_id)
 ```
 
 ## validate winner
-```
+```ts
 magami.validateWinner({
     coupon_code: 'example'
     phone: 082...
@@ -55,7 +62,7 @@ magami.validateWinner({
 ```
 
 ## winnerForm
-```
+```ts
 magami.winnerForm({
     redemption_id: 'example',
     email:'email@example.com',
@@ -65,17 +72,15 @@ magami.winnerForm({
 ```
 
 ## getWinner
-```
+```ts
 magami.getWinner()
 ```
 ## faq
-```
+```ts
 
 magami.faq()
 
-options
-
-you can search FAQ by passing string to FAQ method
+// or you can pass a string into faq to filter faq data
 
 magami.faq('your search')
 ```
