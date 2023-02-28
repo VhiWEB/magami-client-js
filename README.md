@@ -38,6 +38,7 @@ magami.claim(coupon_code)
 ```
 
 ## Welcome Form
+To set user data from a user use `welcomeForm()`
 ```ts
 magami.welcomeForm({
     coupon_code: 'example'
@@ -49,11 +50,13 @@ magami.welcomeForm({
 ```
 
 ## Redeem
+To redeem a coupon use `redeem()` function.
 ```ts
-magami.welcomeForm(redemption_id)
+magami.redeem(redemption_id)
 ```
 
 ## validate winner
+Incase your user reload or close the page by some reason, you can validate your winner coupon code using `validateWinner()`.
 ```ts
 magami.validateWinner({
     coupon_code: 'example'
@@ -62,6 +65,7 @@ magami.validateWinner({
 ```
 
 ## winnerForm
+To complete the user data after a user won a prize, you can use `winnerForm()` to complete their data.
 ```ts
 magami.winnerForm({
     redemption_id: 'example',
@@ -72,10 +76,12 @@ magami.winnerForm({
 ```
 
 ## getWinner
+To get list of winners you can use `getWinner()` function.
 ```ts
 magami.getWinner()
 ```
 ## faq
+To get list of all your Frequently Asked Question, use `faq()` function.
 ```ts
 
 magami.faq()
