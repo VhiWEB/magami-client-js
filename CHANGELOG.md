@@ -12,3 +12,10 @@
 - Add API configuration method.
 - Add API call method to sent request to api
 
+## v1.0.1 - [2023-03-10]
+
+### Fix
+
+- fix wrong type object implementation for all functions
+
+

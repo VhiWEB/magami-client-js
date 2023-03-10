@@ -42,9 +42,10 @@ To set user data from a user use `welcomeForm()`
 ```ts
 magami.welcomeForm({
     coupon_code: 'example'
-    name: 'example',
-    phone: 0,
-    province_id: 'example',
+    name: 'example'
+    phone: 'example'
+    province_id: 'example'
+    city_id: 'example'
     district_id: 'example'
 })
 ```
