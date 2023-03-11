@@ -1,6 +1,6 @@
 import { coreApi } from "./helpers/api"
 import { storeDataManagement } from "./utils/storage"
-import type { Init, UserData, Winner } from "./utils/model"
+import * as model from "./utils/model"
 
 export default class Magami {
 
@@ -14,7 +14,7 @@ export default class Magami {
         return this.storage.getCampaignSlug()
     }
 
-    init({ apiKey, campaignSlug }: Init): void {
+    init({ apiKey, campaignSlug }: model.Init): void {
         this.storage.setApiKey(apiKey)
         this.storage.setCampaignSlug(campaignSlug)
     }
@@ -56,7 +56,14 @@ export default class Magami {
         phone,
         province_id,
         city_id,
-        district_id }: UserData): Promise<UserData | any> {
+        district_id }: {
+            coupon_code: string,
+            name: string,
+            phone: string | number,
+            province_id: string | number,
+            city_id: string | number,
+            district_id: string | number,
+        }) {
         const payload = {
             coupon_code,
             name,
@@ -66,7 +73,7 @@ export default class Magami {
             district_id
         }
         try {
-            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/welcome/submit`, {
+            const response: any = await this.apiCall('POST', `campaigns/${this.campaignSlug}/welcome/submit`, {
                 ...payload
             })
 
@@ -97,7 +104,10 @@ export default class Magami {
         }
     }
 
-    async validateWinner({ coupon_code, phone }: UserData) {
+    async validateWinner({ coupon_code, phone }: {
+        coupon_code: string,
+        phone: string | number
+    }) {
         try {
             const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/validate`, {
                 coupon_code,
@@ -113,7 +123,12 @@ export default class Magami {
         }
     }
 
-    async winnerForm({ redemption_id, email, id_number, address }: Winner) {
+    async winnerForm({ redemption_id, email, id_number, address }: {
+        redemption_id: string | number,
+        email: string,
+        id_number: string | number,
+        address: string
+    }) {
         try {
             const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/submit`, {
                 redemption_id,
