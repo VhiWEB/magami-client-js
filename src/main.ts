@@ -38,7 +38,7 @@ export default class Magami {
     async claim(couponCode: string) {
 
         try {
-            const response = await this.apiCall('GET', `claim/${couponCode}`);
+            const response = await this.apiCall('GET', `check/${couponCode}`);
             if (response) {
                 this.storage.setCouponCode(couponCode)
                 return response;
