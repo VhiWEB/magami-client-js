@@ -27,4 +27,4 @@
 ## v2.0.1 - [2023-03-13]
 ### Fix
 
-- changing api address
+- forgot to build the app -___-
