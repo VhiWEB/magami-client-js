@@ -19,7 +19,12 @@
 - fix wrong type object implementation for all functions
 
 
-## v1.0.1 - [2023-03-13]
+## v2.0.0 - [2023-03-13]
 ### Major
+
+- changing api address
+
+## v2.0.1 - [2023-03-13]
+### Fix
 
 - changing api address
