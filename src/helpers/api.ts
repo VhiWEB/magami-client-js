@@ -1,13 +1,7 @@
 
-export const coreApi = (method?: string, resource?: string, auth?: string, slug?: string, data?: Record<string, unknown>,) => {
+export const coreApi = (method?: string, resource?: string, auth?: string, slug?: string, data?: Record<string, unknown>, apiURL?: string) => {
 
-    //prod api
-    // let baseURL: any = new URL(`http://app.magami.id/api/v1/campaigns/${slug}/${resource}`)
-
-    //stg api
-    let baseURL: any = new URL(`https://demo.magami.id/api/v1/campaigns/${slug}/${resource}`)
-
-
+    let baseURL: any = new URL(`${apiURL}/${slug}/${resource}`)
 
     return fetch(`${baseURL}`, {
         method,

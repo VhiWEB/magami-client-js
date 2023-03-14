@@ -6,6 +6,8 @@ export default class Magami {
 
     private storage = storeDataManagement()
 
+    protected apiURL = `https://app.magami.id/api/v1/campaigns`
+
     private get apiKey() {
         return this.storage.getApiKey()
     }
@@ -25,7 +27,7 @@ export default class Magami {
         const slug = this.campaignSlug;
 
         try {
-            const response = await coreApi(method, resource, auth, slug, body)
+            const response = await coreApi(method, resource, auth, slug, body, this.apiURL)
             if (response) {
                 const data = await response.json()
                 return data;
@@ -56,14 +58,15 @@ export default class Magami {
         phone,
         province_id,
         city_id,
-        district_id }: {
-            coupon_code: string,
-            name: string,
-            phone: string | number,
-            province_id: string | number,
-            city_id: string | number,
-            district_id: string | number,
-        }) {
+        district_id
+    }: {
+        coupon_code: string,
+        name: string,
+        phone: string | number,
+        province_id: string | number,
+        city_id: string | number,
+        district_id: string | number,
+    }) {
         const payload = {
             coupon_code,
             name,
