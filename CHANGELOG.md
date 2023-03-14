@@ -33,3 +33,10 @@
 ### Fix
 
 - wrong end point
+
+## v2.1.2 - [2023-03-15]
+### Minor Update
+
+- update apiCall function
+- update coreApi on helper
+- add protected api url so it can change dynamicly from user
