@@ -14,7 +14,7 @@
 
 ## v1.0.1 - [2023-03-10]
 
-### Fix
+### Patch
 
 - fix wrong type object implementation for all functions
 
@@ -25,18 +25,23 @@
 - changing api address
 
 ## v2.0.1 - [2023-03-13]
-### Fix
+### Patch
 
 - forgot to build the app -___-
 
 ## v2.0.2 - [2023-03-13]
-### Fix
+### Patch
 
 - wrong end point
 
 ## v2.1.2 - [2023-03-15]
-### Minor Update
+### Minor Updates
 
 - update apiCall function
 - update coreApi on helper
 - add protected api url so it can change dynamicly from user
+
+## v2.1.3 - [2023-03-16]
+### Patch
+
+- Fixing wrong endpoints on every request API call 

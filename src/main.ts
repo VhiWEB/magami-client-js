@@ -76,7 +76,7 @@ export default class Magami {
             district_id
         }
         try {
-            const response: any = await this.apiCall('POST', `campaigns/${this.campaignSlug}/welcome/submit`, {
+            const response: any = await this.apiCall('POST', `welcome/submit`, {
                 ...payload
             })
 
@@ -93,7 +93,7 @@ export default class Magami {
     async redeem(redemptionId: string) {
         try {
 
-            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/redeem/${redemptionId}`)
+            const response = await this.apiCall('GET', `redeem/${redemptionId}`)
 
             if (response) {
                 return response
@@ -112,7 +112,7 @@ export default class Magami {
         phone: string | number
     }) {
         try {
-            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/validate`, {
+            const response = await this.apiCall('POST', `winner/validate`, {
                 coupon_code,
                 phone,
             })
@@ -133,7 +133,7 @@ export default class Magami {
         address: string
     }) {
         try {
-            const response = await this.apiCall('POST', `campaigns/${this.campaignSlug}/winner/submit`, {
+            const response = await this.apiCall('POST', `winner/submit`, {
                 redemption_id,
                 email,
                 id_number,
@@ -152,7 +152,7 @@ export default class Magami {
     async getWinner() {
         try {
 
-            const response = await this.apiCall('GET', `campaigns/${this.campaignSlug}/winner/list`,)
+            const response = await this.apiCall('GET', `winner/list`,)
 
             if (response) {
                 return response
@@ -165,7 +165,7 @@ export default class Magami {
 
     async faq(searchKey?: string | number | any) {
         try {
-            const reqUrl = `campaigns/${this.campaignSlug}/faq`
+            const reqUrl = `faq`
 
             searchKey && reqUrl.concat(`?search=${searchKey}`)
 
