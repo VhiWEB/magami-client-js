@@ -1,4 +1,4 @@
-import { coreApi } from "./helpers/api"
+import { coreApi, coreApiNoSlug } from "./helpers/api"
 import { storeDataManagement } from "./utils/storage"
 import * as model from "./utils/model"
 
@@ -6,7 +6,7 @@ export default class Magami {
 
     private storage = storeDataManagement()
 
-    protected apiURL = `https://app.magami.id/api/v1/campaigns`
+    protected apiURL = `https://app.magami.id/api/v1`
 
     private get apiKey() {
         return this.storage.getApiKey()
@@ -26,8 +26,22 @@ export default class Magami {
         const auth = this.apiKey;
         const slug = this.campaignSlug;
 
+        console.log(this.apiURL, 'ap[i url from main')
         try {
             const response = await coreApi(method, resource, auth, slug, body, this.apiURL)
+            if (response) {
+                const data = await response.json()
+                return data;
+            }
+        } catch (error) {
+            return error
+        }
+    }
+    private async apiCalNoSlug(method: string, resource: string, body?: Record<string, unknown>) {
+        const auth = this.apiKey;
+
+        try {
+            const response = await coreApiNoSlug(method, resource, auth, body, this.apiURL)
             if (response) {
                 const data = await response.json()
                 return data;
@@ -182,7 +196,7 @@ export default class Magami {
 
     async getProvince() {
         try {
-            const response = await this.apiCall('GET', 'locations/provinces')
+            const response = await this.apiCalNoSlug('GET', 'locations/provinces')
 
             if (response) {
                 return response
@@ -195,7 +209,7 @@ export default class Magami {
 
     async getCities(provinceId: number | string) {
         try {
-            const response = await this.apiCall('GET', `locations/cities/${provinceId}`)
+            const response = await this.apiCalNoSlug('GET', `locations/cities/${provinceId}`)
 
             if (response) {
                 return response
@@ -207,7 +221,7 @@ export default class Magami {
 
     async getDistrict(cityId: number | string) {
         try {
-            const response = await this.apiCall('GET', `locations/districts/${cityId}`)
+            const response = await this.apiCalNoSlug('GET', `locations/districts/${cityId}`)
 
             if (response) {
                 return response

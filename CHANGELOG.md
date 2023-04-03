@@ -46,7 +46,9 @@
 
 - Fixing wrong endpoints on every request API call 
 
-## v2.2.3 - [2023-03-16]
+## v2.2.0 - [2023-04-03]
 ### Patch
 
 - add new feature for get locations
+- add new api call for basic api call with no campaign slug
+- update coreApi and apiCall function
