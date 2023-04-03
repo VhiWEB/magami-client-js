@@ -179,4 +179,41 @@ export default class Magami {
             return error
         }
     }
+
+    async getProvince() {
+        try {
+            const response = await this.apiCall('GET', 'locations/provinces')
+
+            if (response) {
+                return response
+            }
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    async getCities(provinceId: number | string) {
+        try {
+            const response = await this.apiCall('GET', `locations/cities/${provinceId}`)
+
+            if (response) {
+                return response
+            }
+        } catch (error) {
+            return error
+        }
+    }
+
+    async getDistrict(cityId: number | string) {
+        try {
+            const response = await this.apiCall('GET', `locations/districts/${cityId}`)
+
+            if (response) {
+                return response
+            }
+        } catch (error) {
+            return error
+        }
+    }
 }
