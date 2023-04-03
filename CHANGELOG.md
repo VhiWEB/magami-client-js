@@ -45,3 +45,8 @@
 ### Patch
 
 - Fixing wrong endpoints on every request API call 
+
+## v2.2.3 - [2023-03-16]
+### Patch
+
+- add new feature for get locations
