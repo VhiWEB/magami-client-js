@@ -230,4 +230,16 @@ export default class Magami {
             return error
         }
     }
+
+    async getLeaderboard(type: string) {
+        try {
+            const response = await this.apiCalNoSlug('GET', `leaderboard/${type}`)
+
+            if (response) {
+                return response
+            }
+        } catch (error) {
+            return error
+        }
+    }
 }

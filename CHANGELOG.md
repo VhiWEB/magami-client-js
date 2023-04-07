@@ -52,3 +52,8 @@
 - add new feature for get locations
 - add new api call for basic api call with no campaign slug
 - update coreApi and apiCall function
+
+## v2.2.1 - [2023-04-07]
+### Added
+
+- add new feature for get leaderboard
