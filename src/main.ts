@@ -233,7 +233,7 @@ export default class Magami {
 
     async getLeaderboard(type: string) {
         try {
-            const response = await this.apiCalNoSlug('GET', `leaderboard/${type}`)
+            const response = await this.apiCall('GET', `leaderboard/${type}`)
 
             if (response) {
                 return response

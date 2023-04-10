@@ -1,7 +1,6 @@
 
 export const coreApi = (method?: string, resource?: string, auth?: string, slug?: string, data?: Record<string, unknown>, apiURL?: string) => {
 
-    console.log(apiURL)
     let baseURL: any = new URL(`${apiURL}/campaigns/${slug}/${resource}`)
 
     return fetch(`${baseURL}`, {
