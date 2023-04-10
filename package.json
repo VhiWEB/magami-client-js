@@ -1,7 +1,7 @@
 {
   "name": "@vhiweb/magami-client-js",
   "private": false,
-  "version": "2.2.1",
+  "version": "2.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/VhiWEB/magami-client-js.git"
