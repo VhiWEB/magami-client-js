@@ -62,3 +62,8 @@
 ### Added
 
 - fix leaderboard endpoint
+
+## v2.2.3 - [2023-04-13]
+### Patch
+
+- adding new variable to winner form payload
