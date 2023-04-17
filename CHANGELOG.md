@@ -59,7 +59,7 @@
 - add new feature for get leaderboard
 
 ## v2.2.2 - [2023-04-10]
-### Added
+### fix
 
 - fix leaderboard endpoint
 
