@@ -55,7 +55,7 @@ magami.claim(coupon_code)
 ```
 | Field Name | Description | Data Type | Required 
 |--|--|--|
-| coupon_code |-| String | yes
+coupon_code |-| String | yes
 ### Welcome Form
 To set user data from a user use `welcomeForm()`
 ```ts
@@ -63,12 +63,12 @@ welcomeForm({ coupon_code, name, phone, province_id, city_id, district_id })
 ```
 | Field Name | Description | Data Type | Required 
 |--|--|--|
-| coupon_code   |-| String | yes
-| name          |-| String | yes
-| phone         |-| String | yes
-| province_id   |-| String | yes
-| city_id       |-| String | yes
-| district_id   |-| String | yes
+coupon_code   | - | String | yes
+name          | - | String | yes
+phone         | - | String | yes
+province_id   | - | String | yes
+city_id       | - | String | yes
+district_id   | - | String | yes
 ### Redeem
 To redeem a coupon use `redeem()` function.
 ```ts
@@ -76,7 +76,7 @@ redeem(redemption_id)
 ```
 | Field Name | Description | Data Type | Required 
 |--|--|--|
-| redemption_id   |-| String | yes
+redemption_id   | - | String | yes
 
 
 ### Validate Winner
@@ -86,8 +86,8 @@ validateWinner({ coupon_code, phone })
 ```
 | Field Name | Description | Data Type | Required 
 |--|--|--|
-| coupon_code   |-| String | yes
-| phone         |-| String | yes
+coupon_code   | - | String | yes
+phone         | - | String | yes
 
 ### Winner Form
 To complete the user data after a user won a prize, you can use `winnerForm()` to complete their data.
@@ -96,10 +96,10 @@ winnerForm({ redemption_id, email,id_number, address})
 ```
 | Field Name | Description | Data Type | Required 
 |--|--|--|
-| redemption_id   |-| String | yes
-| email           |-| String | yes
-| id_number       |-| String | yes
-| address         |-| String | yes
+redemption_id   | - | String | yes
+email           | - | String | yes
+id_number       | - | String | yes
+address         | - | String | yes
 
 ### Get Winner
 To get list of winners you can use `getWinner()` function.
@@ -115,6 +115,6 @@ magami.faq('your search')
 ```
 | Field Name | Description | Data Type  | Required
 |--|--|--|
-| keyword |-| String | no
+keyword | - | String | no
 
 
