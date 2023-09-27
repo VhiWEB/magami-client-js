@@ -40,7 +40,7 @@ magami.claim('coupon_code_here')
 ### Claiming Coupon
 To claim coupon from a campaign use `claim()` function.
 ```ts
-magami.claim(coupon_code)
+claim(coupon_code)
 ```
 | Param       | Description  | Data Type  | Required  |
 |-------------|--------------|------------|-----------|
