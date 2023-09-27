@@ -98,14 +98,14 @@ winnerForm({ redemption_id, email,id_number, address})
 ### Get Winner
 To get list of winners you can use `getWinner()` function.
 ```ts
-magami.getWinner()
+getWinner()
 ```
 ### FAQ
 To get list of all your Frequently Asked Question, use `faq()` function.
 ```ts
-magami.faq()
+faq()
 // or you can pass a string into faq to filter faq data
-magami.faq('your search')
+faq('keyword')
 ```
 | Param   | Description | Data Type | Required |
 |---------|-------------|-----------|----------|
