@@ -143,6 +143,7 @@ export default class Magami {
         email: string,
         id_number: string | number,
         address: string
+        zip_code: string | number
     }): Promise<any> {
         try {
             const response = await this.apiCall('POST', `winner/submit`, {
