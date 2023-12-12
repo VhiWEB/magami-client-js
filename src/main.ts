@@ -22,16 +22,14 @@ export default class Magami {
     }
 
     // setup authorization for headers
-    private async apiCall(method: string, resource: string, body?: Record<string, unknown>) {
+    private async apiCall(method: string, resource: string, body?: Record<string, unknown>): Promise<any> {
         const auth = this.apiKey;
         const slug = this.campaignSlug;
-
-        console.log(this.apiURL, 'ap[i url from main')
         try {
             const response = await coreApi(method, resource, auth, slug, body, this.apiURL)
             if (response) {
-                const data = await response.json()
-                return data;
+                // const data = await response.json()
+                return response;
             }
         } catch (error) {
             return error
@@ -144,9 +142,8 @@ export default class Magami {
         redemption_id: string | number,
         email: string,
         id_number: string | number,
-        address: string,
-        zip_code: string | number
-    }) {
+        address: string
+    }): Promise<any> {
         try {
             const response = await this.apiCall('POST', `winner/submit`, {
                 redemption_id,
@@ -165,7 +162,7 @@ export default class Magami {
         }
     }
 
-    async getWinner() {
+    async getWinner(): Promise<any> {
         try {
 
             const response = await this.apiCall('GET', `winner/list`,)
@@ -179,7 +176,7 @@ export default class Magami {
         }
     }
 
-    async faq(searchKey?: string | number | any) {
+    async faq(searchKey?: string | number | any): Promise<any> {
         try {
             const reqUrl = `faq`
 
@@ -196,7 +193,7 @@ export default class Magami {
         }
     }
 
-    async getProvince() {
+    async getProvince(): Promise<any> {
         try {
             const response = await this.apiCalNoSlug('GET', 'locations/provinces')
 
@@ -209,7 +206,7 @@ export default class Magami {
         }
     }
 
-    async getCities(provinceId: number | string) {
+    async getCities(provinceId: number | string): Promise<any> {
         try {
             const response = await this.apiCalNoSlug('GET', `locations/cities/${provinceId}`)
 
@@ -221,7 +218,7 @@ export default class Magami {
         }
     }
 
-    async getDistrict(cityId: number | string) {
+    async getDistrict(cityId: number | string): Promise<any> {
         try {
             const response = await this.apiCalNoSlug('GET', `locations/districts/${cityId}`)
 
