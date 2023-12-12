@@ -1,5 +1,10 @@
 # Changelog
 
+
+## v2.2.5 - [2023-04-13]
+### Patch
+- removing unused item
+
 ## v2.2.4 - [2023-04-13]
 ### Patch
 - core api refactoring 
