@@ -28,7 +28,6 @@ export default class Magami {
         try {
             const response = await coreApi(method, resource, auth, slug, body, this.apiURL)
             if (response) {
-                // const data = await response.json()
                 return response;
             }
         } catch (error) {
