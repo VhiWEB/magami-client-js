@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.2.4 - [2023-04-13]
+### Patch
+- core api refactoring 
+- data request update
+
 ## v2.2.3 - [2023-04-13]
 ### Patch
 - adding new variable to winner form payload
