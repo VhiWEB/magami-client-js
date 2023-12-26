@@ -37,3 +37,17 @@ export const coreApiNoSlug = (method?: string, resource?: string, auth?: string,
         body: data && JSON.stringify(data)
     });
 }
+
+export const coreApiBasicAuth = (method?: string, resource?: string, data?: Record<string, unknown>, uname?: string, pass?: string, apiURL?: string) => {
+    let baseURL: any = new URL(`${apiURL}/${resource}`)
+    const cred = `${uname}:${pass}`
+    const encodedCredentials = btoa(cred);
+    return fetch(`${baseURL}`, {
+        method,
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Basic ${encodedCredentials}`
+        },
+        body: data && JSON.stringify(data)
+    });
+}

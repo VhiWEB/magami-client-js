@@ -46,6 +46,26 @@ claim(coupon_code)
 |-------------|--------------|------------|-----------|
 | coupon_code | -            | String     | yes       |
 
+### Microsite Configuration
+To get your microsite configuration including app key and campaign slug, use `getConfiguration()` to get all information you need about your campaign.
+```ts
+getConfiguration(host, username, password) 
+```
+| Param        | Description | Data Type | Required |
+|--------------|-------------|-----------|----------|
+| host|        |             | String    | yes      |
+| username     |             | String    | yes      |
+| password     |             | String    | yes      |
+
+### Validate Signnature
+To validate your signature that you get from `claim()` response, use `validateSignature()` to revalidate your coupon/token (in case you wan't it to be more secure)
+```ts
+validateSignature(signature) 
+```
+| Param        | Description | Data Type | Required |
+|--------------|-------------|-----------|----------|
+| signature    |             | String    | yes      |
+
 ### Welcome Form
 To set user data from a user use `welcomeForm()`
 ```ts
@@ -69,8 +89,6 @@ redeem(redemption_id)
 |--------------|--------------|-----------|----------|
 | redemption_id|              | String    | yes      |
 
-
-
 ### Validate Winner
 Incase your user reload or close the page by some reason, you can re-validate your winner coupon code using `validateWinner()`.
 ```ts
@@ -80,6 +98,7 @@ validateWinner({ coupon_code, phone })
 |-------------|-------------|-----------|----------|
 | coupon_code |             | String    | yes      |
 | phone       |             | String    | yes      |
+
 
 
 ### Winner Form
@@ -93,6 +112,7 @@ winnerForm({ redemption_id, email,id_number, address})
 | email        |             | String    | yes      |
 | id_number    |             | String    | yes      |
 | address      |             | String    | yes      |
+
 
 
 ### Get Winner

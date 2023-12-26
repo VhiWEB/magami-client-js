@@ -1,4 +1,4 @@
-import { coreApi, coreApiNoSlug } from "./helpers/api"
+import { coreApi, coreApiBasicAuth, coreApiNoSlug } from "./helpers/api"
 import { storeDataManagement } from "./utils/storage"
 import * as model from "./utils/model"
 
@@ -30,26 +30,38 @@ export default class Magami {
             if (response) {
                 return response;
             }
-        } catch (error) {
-            return error
+        } catch (error: any) {
+            throw Error(error)
         }
     }
     private async apiCalNoSlug(method: string, resource: string, body?: Record<string, unknown>) {
         const auth = this.apiKey;
-
         try {
             const response = await coreApiNoSlug(method, resource, auth, body, this.apiURL)
             if (response) {
                 const data = await response.json()
                 return data;
             }
-        } catch (error) {
-            return error
+        } catch (error: any) {
+            throw Error(error)
+
+        }
+    }
+
+    private async apiCallBasic(method: string, resource: string, username: string, password: string, body?: Record<string, unknown>) {
+        try {
+            const response = await coreApiBasicAuth(method, resource, body, username, password, this.apiURL)
+            if (response) {
+                const data = await response.json()
+                return data;
+            }
+        } catch (error: any) {
+            throw Error(error)
+
         }
     }
 
     async claim(couponCode: string) {
-
         try {
             const response = await this.apiCall('GET', `check/${couponCode}`);
             if (response) {
@@ -69,7 +81,7 @@ export default class Magami {
         phone,
         province_id,
         city_id,
-        district_id
+        district_id,
     }: {
         coupon_code: string,
         name: string,
@@ -79,7 +91,6 @@ export default class Magami {
         district_id: string | number,
     }) {
         const payload = {
-            coupon_code,
             name,
             phone,
             province_id,
@@ -87,7 +98,7 @@ export default class Magami {
             district_id
         }
         try {
-            const response: any = await this.apiCall('POST', `welcome/submit`, {
+            const response: any = await this.apiCall('POST', `welcome/submit/${coupon_code}`, {
                 ...payload
             })
 
@@ -103,7 +114,6 @@ export default class Magami {
 
     async redeem(redemptionId: string) {
         try {
-
             const response = await this.apiCall('GET', `redeem/${redemptionId}`)
 
             if (response) {
@@ -120,7 +130,7 @@ export default class Magami {
 
     async validateWinner({ coupon_code, phone }: {
         coupon_code: string,
-        phone: string | number
+        phone: string | number,
     }) {
         try {
             const response = await this.apiCall('POST', `winner/validate`, {
@@ -131,7 +141,6 @@ export default class Magami {
             if (response) {
                 return response
             }
-
         } catch (error) {
             return error
         }
@@ -145,8 +154,8 @@ export default class Magami {
         zip_code: string | number
     }): Promise<any> {
         try {
-            const response = await this.apiCall('POST', `winner/submit`, {
-                redemption_id,
+            const response = await this.apiCall('POST', `winner/submit/${redemption_id}`, {
+
                 email,
                 id_number,
                 address,
@@ -238,6 +247,30 @@ export default class Magami {
                 return response
             }
         } catch (error) {
+            return error
+        }
+    }
+
+    async getConfiguration(host: string, username: string, password: string) {
+        try {
+            const response = await this.apiCallBasic('GET', `tenant/${host}`, username, password)
+            if (response) {
+                return response
+            }
+        } catch (error) {
+            return error
+        }
+    }
+
+
+
+    async validateSignature(signature: string) {
+        try {
+            const request: any = await this.apiCall('GET', `session/validate/${signature}`)
+            if (request) {
+                return request
+            }
+        } catch (error: any) {
             return error
         }
     }
