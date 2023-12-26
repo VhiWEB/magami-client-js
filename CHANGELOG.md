@@ -1,7 +1,7 @@
 # Changelog
 
 ## v2.3.0 - [2023-12-26]
-### Patch
+### added
 - adding new api call request to get campaign information such as theme color, banner, logo, and etc
 - adding new api call request to validate token signature
 
