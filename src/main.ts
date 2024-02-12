@@ -146,20 +146,25 @@ export default class Magami {
         }
     }
 
-    async winnerForm({ redemption_id, email, id_number, address, zip_code }: {
-        redemption_id: string | number,
-        email: string,
-        id_number: string | number,
+    async winnerForm({ redemption_id, email, id_number, address, zip_code, province_id, district_id, city_id }: {
+        redemption_id: string | number
+        email: string
+        id_number: string | number
         address: string
         zip_code: string | number
+        province_id: string | number
+        district_id: string | number
+        city_id: string | number
     }): Promise<any> {
         try {
             const response = await this.apiCall('POST', `winner/submit/${redemption_id}`, {
-
                 email,
                 id_number,
                 address,
-                zip_code
+                zip_code,
+                province_id,
+                district_id,
+                city_id,
             })
 
             if (response) {
