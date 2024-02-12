@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.3.1 - [2023-12-26]
+### patch
+- new payload on winner form
+
 ## v2.3.0 - [2023-12-26]
 ### added
 - adding new api call request to get campaign information such as theme color, banner, logo, and etc
