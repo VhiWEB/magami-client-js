@@ -1,6 +1,9 @@
 # Changelog
 
-## v2.3.1 - [2023-12-26]
+## v2.3.2 - [2023-02-12]
+### patch
+- path versioning that cause new update are not installed
+## v2.3.1 - [2023-02-12]
 ### patch
 - new payload on winner form
 
