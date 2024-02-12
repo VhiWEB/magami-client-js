@@ -1,6 +1,6 @@
 # Changelog
 
-## v2.3.1 - [2023-12-26]
+## v2.3.1 - [2023-02-12]
 ### patch
 - new payload on winner form
 

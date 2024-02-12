@@ -112,6 +112,11 @@ winnerForm({ redemption_id, email,id_number, address})
 | email        |             | String    | yes      |
 | id_number    |             | String    | yes      |
 | address      |             | String    | yes      |
+| province_id  |             | String    | yes      |
+| city_id      |             | String    | yes      |
+| district_id  |             | String    | yes      |
+
+
 
 
 
