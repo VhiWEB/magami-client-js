@@ -22,6 +22,8 @@ export const storeDataManagement = () => {
         setApiKey: Setter<string>('appId'),
         getCampaignSlug: Getter<string>('uniqueKey'),
         setCampaignSlug: Setter<string>('uniqueKey'),
+        setMagamiUserToken: Setter<string>('userToken'),
+        getMagamiUserToken: Getter<string>('userToken'),
 
         // user information
         setUserData: Setter<UserData>('userData'),
@@ -30,6 +32,7 @@ export const storeDataManagement = () => {
         //set coupon code
         setCouponCode: Setter<string>('couponCode'),
         getCouponCode: Getter<string>('couponCode')
+
 
     })
 }

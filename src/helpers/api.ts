@@ -1,6 +1,22 @@
 
 
-export const coreApi = async <T>(method?: string, resource?: string, auth?: string, slug?: string, data?: Record<string, unknown>, apiURL?: string): Promise<T> => {
+export const coreApi = async <T>({
+    method,
+    resource,
+    auth,
+    sso,
+    slug,
+    body,
+    apiURL,
+}: {
+    method?: string,
+    resource?: string,
+    auth?: string,
+    sso: string,
+    slug?: string,
+    body?: Record<string, unknown>,
+    apiURL?: string
+}): Promise<T> => {
     let baseURL: any = new URL(`${apiURL}/${slug}/${resource}`)
     try {
         const response = await fetch(`${baseURL}`, {
@@ -8,8 +24,9 @@ export const coreApi = async <T>(method?: string, resource?: string, auth?: stri
             headers: {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${auth}`,
+                'Magami-user-token': sso
             },
-            body: data && JSON.stringify(data)
+            body: body && JSON.stringify(body)
         })
 
         if (!response.ok) {
@@ -24,8 +41,19 @@ export const coreApi = async <T>(method?: string, resource?: string, auth?: stri
     }
 }
 
-export const coreApiNoSlug = (method?: string, resource?: string, auth?: string, data?: Record<string, unknown>, apiURL?: string) => {
-
+export const coreApiNoSlug = ({
+    method,
+    resource,
+    auth,
+    body,
+    apiURL
+}: {
+    method?: string,
+    resource?: string,
+    auth?: string,
+    body?: Record<string, unknown>,
+    apiURL?: string
+}) => {
     let baseURL: any = new URL(`${apiURL}/${resource}`)
 
     return fetch(`${baseURL}`, {
@@ -34,7 +62,7 @@ export const coreApiNoSlug = (method?: string, resource?: string, auth?: string,
             'content-type': 'application/json',
             'Authorization': `Bearer ${auth}`,
         },
-        body: data && JSON.stringify(data)
+        body: body && JSON.stringify(body)
     });
 }
 

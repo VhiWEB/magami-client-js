@@ -8,6 +8,7 @@ export default class Magami {
 
     protected apiURL = `https://app.magami.id/api/v1`
 
+
     private get apiKey() {
         return this.storage.getApiKey()
     }
@@ -16,17 +17,32 @@ export default class Magami {
         return this.storage.getCampaignSlug()
     }
 
-    init({ apiKey, campaignSlug }: model.Init): void {
+    private get magamiToken() {
+        return this.storage.getMagamiUserToken()
+    }
+
+    init({ apiKey, campaignSlug, userTokenSSo }: model.Init): void {
         this.storage.setApiKey(apiKey)
         this.storage.setCampaignSlug(campaignSlug)
+        this.storage.setMagamiUserToken(userTokenSSo)
     }
 
     // setup authorization for headers
     private async apiCall(method: string, resource: string, body?: Record<string, unknown>): Promise<any> {
         const auth = this.apiKey;
         const slug = this.campaignSlug;
+        const sso = this.magamiToken;
+
         try {
-            const response = await coreApi(method, resource, auth, slug, body, this.apiURL)
+            const response = await coreApi({
+                method,
+                resource,
+                auth,
+                sso,
+                slug,
+                body,
+                apiURL: this.apiURL
+            })
             if (response) {
                 return response;
             }
@@ -37,7 +53,13 @@ export default class Magami {
     private async apiCalNoSlug(method: string, resource: string, body?: Record<string, unknown>) {
         const auth = this.apiKey;
         try {
-            const response = await coreApiNoSlug(method, resource, auth, body, this.apiURL)
+            const response = await coreApiNoSlug({
+                method,
+                resource,
+                auth,
+                body,
+                apiURL: this.apiURL
+            })
             if (response) {
                 const data = await response.json()
                 return data;
