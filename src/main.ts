@@ -113,6 +113,7 @@ export default class Magami {
 		province_id,
 		city_id,
 		district_id,
+		validate_fields,
 	}: {
 		coupon_code: string;
 		name: string;
@@ -120,6 +121,7 @@ export default class Magami {
 		province_id: string | number;
 		city_id: string | number;
 		district_id: string | number;
+		validate_fields?: string;
 	}) {
 		const payload = {
 			name,
@@ -131,7 +133,9 @@ export default class Magami {
 		try {
 			const response: any = await this.apiCall(
 				"POST",
-				`welcome/submit/${coupon_code}`,
+				`welcome/submit/${coupon_code}${
+					validate_fields ? `?validate_fields=${validate_fields}` : ""
+				}`,
 				{
 					...payload,
 				}

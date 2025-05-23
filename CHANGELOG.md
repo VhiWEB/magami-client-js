@@ -1,5 +1,11 @@
 # Changelog
 
+## v.2.3.4 - [2025-05-23]
+
+### Added
+
+-   Added optional `validate_fields` parameter to `submit` method for field validation during submission process
+
 ## v.2.3.3 - [2025-03-13]
 
 ### added
