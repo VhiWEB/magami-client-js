@@ -8,16 +8,21 @@ export default class Magami {
 	protected apiURL = `https://app.magami.id/api/v1`;
 
 	private get apiKey() {
-		return this.storage.getApiKey();
+		return this.storage.getTenantKey();
+	}
+
+	private get token() {
+		return this.storage.getToken();
 	}
 
 	private get campaignSlug() {
 		return this.storage.getCampaignSlug();
 	}
 
-	init({ apiKey, campaignSlug }: model.Init): void {
-		this.storage.setApiKey(apiKey);
+	init({ apiKey, campaignSlug, token }: model.Init): void {
+		this.storage.setTenantKey(apiKey);
 		this.storage.setCampaignSlug(campaignSlug);
+		this.storage.setToken(token);
 	}
 
 	// setup authorization for headers
@@ -26,16 +31,19 @@ export default class Magami {
 		resource: string,
 		body?: Record<string, unknown>
 	): Promise<any> {
-		const auth = this.apiKey;
+		const tenantKey = this.apiKey;
+		const token = this.token;
 		const slug = this.campaignSlug;
+
 		try {
 			const response = await coreApi(
 				method,
 				resource,
-				auth,
+				tenantKey,
 				slug,
 				body,
-				this.apiURL
+				this.apiURL,
+				token
 			);
 			if (response) {
 				return response;
@@ -49,14 +57,17 @@ export default class Magami {
 		resource: string,
 		body?: Record<string, unknown>
 	) {
-		const auth = this.apiKey;
+		const tenantKey = this.apiKey;
+		const token = this.token;
+
 		try {
 			const response = await coreApiNoSlug(
 				method,
 				resource,
-				auth,
+				tenantKey,
 				body,
-				this.apiURL
+				this.apiURL,
+				token
 			);
 			if (response) {
 				const data = await response.json();
@@ -75,13 +86,18 @@ export default class Magami {
 		body?: Record<string, unknown>
 	) {
 		try {
+			const tenantKey = this.apiKey;
+			const token = this.token;
+
 			const response = await coreApiBasicAuth(
 				method,
 				resource,
 				body,
 				username,
 				password,
-				this.apiURL
+				this.apiURL,
+				tenantKey,
+				token
 			);
 			if (response) {
 				const data = await response.json();

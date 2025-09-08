@@ -1,5 +1,24 @@
 # Changelog
 
+## v.2.3.5 - [2025-09-08]
+
+### Added
+
+-   Added token field to Init interface and storage management
+-   Added token support in all API authentication headers
+-   Added installation documentation for local development workflow
+
+### Changed
+
+-   Replace apiKey with tenantKey for better clarity and consistency
+-   Update all API calls to include both token and tenantKey headers
+-   Refactor authentication header management across all API functions
+
+### Improved
+
+-   Enhanced authentication system with dual token support
+-   Better separation of concerns between tenant identification and user authentication
+
 ## v.2.3.4 - [2025-05-23]
 
 ### Added
